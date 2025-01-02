@@ -11,13 +11,19 @@ import lombok.ToString;
 @ToString
 public class Order {
     private Integer id;
-    private String frameName;
-    private String size;
-    private String material;
-    private String emailAddress;
     private String address;
+    private String comment;
+    private String emailAddress;
     private String phoneNumber;
     private String photoUrl;
-    private String comment;
     private String orderState;
+
+    private String itemCode;
+    private String price;
 }
+
+
+
+
+
+

@@ -18,19 +18,13 @@ public class OrderEntity {
         private Integer id;
 
         @Column(nullable = false)
-        private String frameName;
+        private String address;
 
-        @Column(nullable = false)
-        private String size;
-
-        @Column(nullable = false)
-        private String material;
+        @Column(nullable = true)
+        private String comment;
 
         @Column(nullable = false, unique = true)
         private String emailAddress;
-
-        @Column(nullable = false)
-        private String address;
 
         @Column(nullable = false, length = 15)
         private String phoneNumber;
@@ -38,9 +32,26 @@ public class OrderEntity {
         @Column(nullable = false)
         private String photoUrl;
 
-        @Column(nullable = true)
-        private String comment;
-
         @Column(nullable = false)
         private String orderState;
+
+        @Column(nullable = false)
+        private String itemCode;
+
+        @Column(nullable = false)
+        private String price;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

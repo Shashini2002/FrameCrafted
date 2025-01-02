@@ -65,9 +65,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private void validateOrder(Order order) {
-        if (order.getFrameName() == null || order.getFrameName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Frame name cannot be null or empty.");
-        }
+
         if (order.getEmailAddress() == null || order.getEmailAddress().trim().isEmpty()) {
             throw new IllegalArgumentException("Email address cannot be null or empty.");
         }
