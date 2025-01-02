@@ -63,6 +63,11 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity entity = mapper.map(order, OrderEntity.class);
         repository.save(entity);
     }
+    @Override
+    public Optional<OrderEntity> getOrderByIdAndEmail(Integer id, String email) {
+        // Validate the order by ID and email
+        return repository.findById(id).filter(order -> email.equals(order.getEmailAddress()));
+    }
 
     private void validateOrder(Order order) {
 
