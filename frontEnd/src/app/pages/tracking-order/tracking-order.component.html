@@ -23,12 +23,56 @@
 <!-- Modal -->
 <div id="orderModal" *ngIf="showModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
     <div style="background: #fff; margin: 10% auto; padding: 20px; width: 50%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); position: relative;">
+       
+        <!-- Cancel Button (Top Right Corner) -->
+        <button (click)="closeModal()" style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 24px; cursor: pointer; color: #000;">&times;</button>
+
         <h2 style="font-size: 24px; font-weight: bold; text-align: center; color: #333;">Order Details</h2>
-        <p style="font-size: 18px; margin-top: 20px; color: #555;">{{ orderDetails }}</p>
-        <div style="text-align: center; margin-top: 20px;">
-            <button (click)="closeModal()" style="background: #9569B2; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Close</button>
+        
+        <!-- Labels for Completed and Current Steps -->
+        <div style="position: absolute; top: 130px; right: 75px; display: flex; gap: 15px;">
+            <span style="display: flex; align-items: center; font-size: 14px; color: #050505;">
+                <span style="width: 12px; height: 12px; background-color: #28a745; border-radius: 50%; margin-right: 5px;"></span>
+                => Completed Step
+            </span>
+            <span style="display: flex; align-items: center; font-size: 14px; color: #000000;">
+                <span style="width: 12px; height: 12px; background-color: #007bff; border-radius: 50%; margin-right: 5px;"></span>
+                => Current Step
+            </span>
         </div>
+
+        <div style="font-size: 18px; margin-top: 20px; color: #555;">
+            <p><strong>Item Code:</strong> {{ orderDetails.itemCode }}</p>
+            <p><strong>Price:</strong> {{ orderDetails.price }}</p>
+            <p><strong>Status:</strong> </p>
+            
+            <!-- Step Indicator -->
+            <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+                <li *ngFor="let step of steps; let i = index" class="flex md:w-full items-center"
+                    [ngClass]="{
+                        'text-blue-600 dark:text-blue-500': step.isActive,
+                        'text-gray-500 dark:text-gray-400': !step.isActive,
+                        'text-green-600 dark:text-green-500': step.isCompleted
+                    }">
+                    <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+                        <span class="me-2">{{ i + 1 }}</span>{{ step.label }}
+                    </span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Show Update and Cancel Buttons for Steps 1, 2, or 3 -->
+        <div *ngIf="steps[0].isActive || steps[1].isActive || steps[2].isActive" style="text-align: center; margin-top: 20px;">
+            <button (click)="updateOrder()" style="background: #D8A7B1; color: #9569B2; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Update Order</button>
+            <button (click)="cancelOrder()" style="background: #ff6b6b; color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 10px;">Cancel Order</button>
+            
+        </div>
+        
+
+        
     </div>
 </div>
+
+
 
 <app-footer></app-footer>

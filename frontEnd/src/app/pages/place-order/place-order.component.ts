@@ -29,6 +29,7 @@ export class PlaceOrderComponent {
   }
 
   placeOrder() {
+    this.order.orderState = '1';
     this.http.post("http://localhost:8080/order/place-order", this.order).subscribe(res => {
       alert("Order placed successfully!");
     });
