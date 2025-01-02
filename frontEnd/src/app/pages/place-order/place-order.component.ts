@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
   styleUrl: './place-order.component.css'
 })
 export class PlaceOrderComponent {
-  public order: Order = new Order("", "", "", "", "", "", "", "1");
+  public order: Order = new Order("", "", "", "", "", "", "", "");
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location) {
     this.route.queryParams.subscribe(params => {
