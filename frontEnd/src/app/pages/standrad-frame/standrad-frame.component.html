@@ -1,0 +1,41 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 style="font-weight: bold; font-size: 30px; margin-left: 20px; margin-top: 40px; color: #3B3A58; margin-bottom: 10px;">Standard Frame</h1>
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4" style="margin-bottom: 20px;">
+    <div class="text-center">
+        <img class="h-auto max-w-full rounded-lg" src="../assets/images/standard.jpg" alt="">
+        <p class="mt-2 font-bold" id = "standard_01">Standard with Glass Frame</p>
+        <p>Size: A4 size - 24x36 inches</p>
+        <p>Price: Rs.1000.00 - Rs.6000.00</p>
+        <p>Material: Wood/Plastic</p>
+        <button class="mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" style="background-color: #D8A7B1; color: #9569B2; font-weight: bold" type="button" [routerLink]="['/place-orders']"
+        [queryParams]="{ frameName: 'Standard with Glass Frame' }">
+            Quick view
+        </button>
+    </div>
+    <div class="text-center">
+        <img class="h-auto max-w-full rounded-lg" src="../assets/images/beading.jpg" alt="">
+        <p class="mt-2 font-bold">Beading Frame</p>
+        <p>Size: 4x6 inches - 24x36 inches</p>
+        <p>Price: Rs.500.00 - Rs.5000.00</p>
+        <p>Material: Wood</p>
+        <button class="mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" style="background-color: #D8A7B1; color: #9569B2; font-weight: bold" [routerLink]="['/place-orders']"
+        [queryParams]="{ frameName: 'Beading Frame' }">
+            Quick view
+        </button>
+    </div>
+    <div class="text-center">
+        <img class="h-auto max-w-full rounded-lg" src="../assets/images/plymount.jpg" alt="">
+        <p class="mt-2 font-bold">Plymount Frame</p>
+        <p>Size: 4x6 inches - 24x36 inches</p>
+        <p>Price: Rs.500.00 - Rs.5000.00</p>
+        <p>Material: Wood/Plastic</p>
+        <button class="mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" style="background-color: #D8A7B1; color: #9569B2; font-weight: bold" [routerLink]="['/place-orders']"
+        [queryParams]="{ frameName: 'Plymount Frame' }">
+            Quick view
+        </button>
+    </div>
+</div>
+
+<app-new-design></app-new-design>
+<app-footer></app-footer>

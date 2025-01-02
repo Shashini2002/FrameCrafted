@@ -1,0 +1,40 @@
+
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="../assets/images/frameCraftedLogo.png" class="h-8" style="width: 100px;height: inherit;margin-top: -10px;" />
+
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white" style="color: #9569B2;">FrameCarfted</span>
+      </a>
+      <div class="flex items-center space-x-6 rtl:space-x-reverse">
+        <h2 style="color: #3b3a5886; font-weight: bold;">Contact Us : </h2>
+          <h2 style="color: #3b3a5886;font-weight: bold;">(077) 412-1234      |</h2>
+          <h2 style="color: #3b3a5886;font-weight: bold;">framecafted&#64;gmail.com      </h2>
+           <button  class="text-sm hover:focus:" style="background-color:#3b3a5886;font-weight: bold; font-size:medium;color: #dff1e5d7;width:80px;height: 30px;border-radius: 50px;">Admin</button>
+      </div>
+  </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700" style="background-color: #3B3A58;margin-top: -10px;">
+  <div class="max-w-screen-xl px-4 py-3 mx-auto">
+      <div class="flex items-center">
+          <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm" style="margin-left: 500px;">
+              <li>
+                  <button type="button" routerLink="/home" class="text-gray-900 dark:text-white hover:underline" style="color: white;" aria-current="page">Home</button>
+              </li>
+              <li>
+                  <button type="button" [routerLink]="['/']" [fragment]="'default-carousel'" class="text-gray-900 dark:text-white hover:underline"style="color: white;">Categories</button>
+              </li>
+              <li>
+                  <button type="button" routerLink="/tracking" class="text-gray-900 dark:text-white hover:underline" style="color: white;">Track My Order</button>
+              </li>
+              <li>
+                  <button type="button" routerLink="/customer-support" class="text-gray-900 dark:text-white hover:underline" style="color: white;">Customer Support</button>
+              </li>
+              <li>
+                <button type="button" routerLink="/customer-feedback" class="text-gray-900 dark:text-white hover:underline" style="color: white;">Customer Feedback</button>
+            </li>
+          </ul>
+      </div>
+  </div>
+</nav>
