@@ -16,6 +16,7 @@ export class TrackingOrderComponent {
   orderId: string = '';
   email: string = '';
   showModal: boolean = false;
+    showNewModal: boolean = false;
   orderDetails: any = { itemCode: '', price: '', status: '' };
 
   // Step titles mapping based on status, including isActive and isCompleted properties
