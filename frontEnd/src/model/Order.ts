@@ -1,24 +1,41 @@
 export class Order{
-frameName :String;
-size : String;
-material :String;
-emailAddress : String;
-address :String;
-phoneNumber : String;
-photoUrl :String;
-comments : String;
-orderState :String;
 
-constructor(frameName :String,size : String,material :String,emailAddress : String,address :String,phoneNumber : String, photoUrl :String,comments : String,orderState :String){
-this.frameName =frameName;
-this.size = size;
-this.material  =material;
+    address :String;
+    comments : String;
+    emailAddress : String;
+    phoneNumber : String;
+    photoUrl :String;
+    orderState :String;
+    itemCode :String;
+    price: String;
+
+
+
+
+
+
+
+
+constructor(address :String,
+    comments : String,
+    emailAddress : String,
+    phoneNumber : String,
+    photoUrl :String,
+    orderState :String,
+    itemCode :String,
+    price: String
+
+){
+this.itemCode =itemCode;
+
 this.emailAddress = emailAddress;
 this.address =address;
 this.phoneNumber = phoneNumber;
 this.photoUrl =photoUrl;
 this.comments = comments;
+this.price=price;
 this.orderState=orderState ;
+
 
 }
 

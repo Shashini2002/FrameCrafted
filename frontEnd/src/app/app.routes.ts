@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'customer-support', component: CustomerSuportComponent },
   { path: 'customer-feedback', component: CustomerFeedbackComponent },
   { path: 'standrad-frame', component: StandradFrameComponent },
-  { path: 'place-orders', component: PlaceOrderComponent },
+  { path: 'place-order', component: PlaceOrderComponent },
  
 ];
 

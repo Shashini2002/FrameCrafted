@@ -1,8 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
+
 <!-- Back Arrow -->
 <div style="margin: 20px;">
     <button
-    (click)="goBack()"
+      (click)="goBack()"
       style="
         background: none;
         border: none;
@@ -18,11 +19,7 @@
       onmouseout="this.style.color='#3B3A58';"
     >
       <span
-        style="
-          font-size: 24px;
-          margin-right: 8px;
-          transition: transform 0.3s ease;
-        "
+        style="font-size: 24px; margin-right: 8px;"
         onmouseover="this.style.transform='translateX(-5px)';"
         onmouseout="this.style.transform='translateX(0)';"
       >
@@ -30,65 +27,64 @@
       </span>
       go Back 
     </button>
-  </div>
+</div>
+
 <div style="background: linear-gradient(to bottom, #9cb4e4, #e4d1e9); border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; font-family: 'Poppins', sans-serif; color: #3B3A58; width: 600px; margin: 20px auto; border: 1px solid #c8a5c1;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 20px;">
         <h2 style="margin: 0; font-size: 20px; font-weight: bold;">Place Order</h2>
     </div>
 
-    <div style="display: grid; gap: 16px; grid-template-columns: 1fr 1fr;">
-        <!-- Frame Name -->
-        <div style="grid-column: span 2;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold;">frame Name:</label>
-            <input [(ngModel)]="order.frameName" type="text">
+   
+        <div style="display: flex; gap: 16px;">
+            <div style="flex: 1;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Frame Code (Item Code):</label>
+                <input [(ngModel)]="order.itemCode" type="text" readonly>
+            </div>
+            <div style="flex: 1;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Price:</label>
+                <input [(ngModel)]="order.price" type="text" readonly>
+            </div>
         </div>
 
-        <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Size</label>
-            <select [(ngModel)]="order.size" name="size" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;">
-                <option value="8x10" selected>8x10</option>
-                <option value="12x16">12x16</option>
-                <option value="16x20">16x20</option>
-                <option value="20x24">20x24</option>
-            </select>
-        </div>
-         
-        <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Material</label>
-            <select [(ngModel)]="order.material" name="material" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;">
-                <option value="Wood" selected>Wood</option>
-                <option value="Plastic">Plastic</option>
-            </select>
-        </div>
-
-        <!-- Email and Phone Number -->
+        <div style="display: flex; gap: 15%;">
         <div>
             <label style="display: block; margin-bottom: 8px; font-weight: bold;">Email</label>
-            <input [(ngModel)]="order.emailAddress" name="email" type="email" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter email" required="">
+            <input [(ngModel)]="order.emailAddress" name="email" type="email" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 135%;" placeholder="Enter email" required=""/>
         </div>
         <div>
             <label style="display: block; margin-bottom: 8px; font-weight: bold;">Phone Number</label>
-            <input [(ngModel)]="order.phoneNumber" name="phone" type="tel" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter phone number" required="">
+            <input [(ngModel)]="order.phoneNumber" type="text" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 140%;" placeholder="Enter phone number" required=""/>
         </div>
+        </div>
+        
+        <div style="display: grid;  ">       
 
-        <!-- Address -->
-        <div style="grid-column: span 2;">
+<div></div>
+       
+        <div>
             <label style="display: block; margin-bottom: 8px; font-weight: bold;">Address</label>
-            <textarea [(ngModel)]="order.address" name="address" rows="3" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter address" required=""></textarea>
+            <textarea rows="3" [(ngModel)]="order.address" type="text" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter address" required=""></textarea>
         </div>
+        
+        <div></div>
+        
 
-        <!-- Add Photo URL -->
-        <div style="grid-column: span 2;">
-            <label style="display: block; font-weight: bold;">Add Photo URL</label>
-            <p>(Upload your photo to Google Drive and submit the URL)</p>
-            <input [(ngModel)]="order.photoUrl" name="photoUrl" type="url" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter photo URL" required="">
+        <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Phone Number</label>
+            <input [(ngModel)]="order.phoneNumber" type="text" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter phone number" required=""/>
         </div>
-
-        <!-- Comment -->
-        <div style="grid-column: span 2;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Comment</label>
-            <textarea [(ngModel)]="order.comments" name="comment" rows="3" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Write your comment here"></textarea>
+       
+        <div></div>
+        
+        <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Photo url</label>
+            <input [(ngModel)]="order.photoUrl" name="email" type="url" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter email" required=""/>
+        </div>
+        <div></div>
+        <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Comments</label>
+            <textarea [(ngModel)]="order.comments" rows="3" style="background: #ffffff; border: 1px solid #C8A5C1; border-radius: 8px; padding: 10px; font-size: 14px; color: #3B3A58; width: 100%;" placeholder="Enter any additional comments"></textarea>
         </div>
     </div>
 
@@ -97,4 +93,6 @@
         Place Order
     </button>
 </div>
+
+
 <app-footer></app-footer>
