@@ -16,17 +16,10 @@ export class TrackingOrderComponent {
   orderId: string = '';
   email: string = '';
   showModal: boolean = false;
-    showNewModal: boolean = false;
-  orderDetails: any = { itemCode: '', price: '', status: '' };
-
-  // Step titles mapping based on status, including isActive and isCompleted properties
-  steps = [
-    { status: "Non-Pay", label: "Non-Pay", isActive: false, isCompleted: false },
-    { status: "Pending", label: "Pending", isActive: false, isCompleted: false },
-    { status: "Processing", label: "Processing", isActive: false, isCompleted: false },
-    { status: "Delivering", label: "Delivering", isActive: false, isCompleted: false },
-    { status: "Delivered", label: "Delivered", isActive: false, isCompleted: false },
-  ];
+  showUpdateModal: boolean = false;
+  orderDetails: any = { itemCode: '', price: '', status: '', emailAddress: '', phoneNumber: '', address: '', photoUrl: '', comments: '' };
+  statuses: string[] = ['Non-Pay', 'Pending', 'Processing', 'Delivering', 'Delivered'];
+  currentStatusIndex: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -44,9 +37,7 @@ export class TrackingOrderComponent {
     this.http.post<any>('http://localhost:8080/order/track', payload).subscribe(
       (response) => {
         this.orderDetails = response;
-
-        // Update the order status dynamically
-        this.updateStepperStatus(response.status);
+        this.currentStatusIndex = this.statuses.indexOf(response.status);
         this.showModal = true;
       },
       (error) => {
@@ -57,37 +48,66 @@ export class TrackingOrderComponent {
 
   closeModal() {
     this.showModal = false;
-    this.orderDetails = { itemCode: '', price: '', status: '' };
+    this.orderDetails = { itemCode: '', price: '', status: '', emailAddress: '', phoneNumber: '', address: '', photoUrl: '', comments: '' };
   }
 
-  // Update the stepper based on the order status
-  updateStepperStatus(status: string) {
-    const formattedStatus = status.toLowerCase(); // Normalize the status to lowercase
-
-    this.steps.forEach((step, index) => {
-      // Set isActive to true if the current step matches the order status
-      step.isActive = formattedStatus === step.status.toLowerCase();
-      
-      // Mark as completed if the step is before the current status
-      step.isCompleted = index < this.steps.findIndex(s => s.status.toLowerCase() === formattedStatus);
-    });
+  openUpdateModal() {
+    if (this.currentStatusIndex >= 4) {
+      alert('Orders in Delivering or Delivered status cannot be updated.');
+      return;
+    }
+    this.orderDetails = { 
+      itemCode: this.orderDetails.itemCode,
+      price: this.orderDetails.price,
+      emailAddress: this.orderDetails.emailAddress || '',  // Use default values if any property is missing
+      phoneNumber: this.orderDetails.phoneNumber || '',
+      address: this.orderDetails.address || '',
+      photoUrl: this.orderDetails.photoUrl || '',
+      comments: this.orderDetails.comments || ''
+    };
+    this.showModal = false;
+    this.showUpdateModal = true;
   }
 
-
-  
-  updateOrder(){
-    
-
+  closeUpdateModal() {
+    this.showUpdateModal = false;
   }
-  cancelOrder(){
-    const confirmCancel = confirm("Are you sure you want to cancel this order?");
+
+  updateOrderDetails() {
+   
+
+    const payload = {
+      orderId: this.orderId,
+      email: this.orderDetails.emailAddress,
+      phoneNumber: this.orderDetails.phoneNumber,
+      address: this.orderDetails.address,
+      photoUrl: this.orderDetails.photoUrl,
+      comments: this.orderDetails.comments,
+    };
+
+    this.http.put<any>(`http://localhost:8080/order/update-order/${this.orderId}`, payload).subscribe(
+      (response) => {
+        alert(response.message); 
+        this.closeUpdateModal();
+      },
+      (error) => {
+        alert('Failed to update the order. Please ensure the server is running and try again.');
+      }
+    );
+  }
+
+  cancelOrder() {
+    if (this.currentStatusIndex >= 4) {
+      alert('Orders in Delivering or Delivered status cannot be cancelled.');
+      return;
+    }
+
+    const confirmCancel = confirm('Are you sure you want to cancel this order?');
     if (confirmCancel) {
-      const payload = { orderId: this.orderId };
-      
       this.http.delete(`http://localhost:8080/order/delete-order/${this.orderId}`).subscribe(
         (response) => {
           alert('Order has been successfully cancelled.');
-          this.closeModal();  // Close the modal after successful cancellation
+          this.closeModal();
         },
         (error) => {
           alert('Failed to cancel the order. Please try again.');
