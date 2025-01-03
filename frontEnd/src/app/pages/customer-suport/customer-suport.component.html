@@ -1,36 +1,81 @@
 <app-navigation-bar></app-navigation-bar>
 <h1 style="font-weight: bold; font-size: 30px; margin-left: 30%; margin-top: 40px; color: #3B3A58; margin-bottom: 10px;">Looking for Customer Support?</h1>
 <p style="margin-left: 250px;margin-right: 200px;font-size: large;">We’re here and ready to help you.(Take a look around our FAQ for answers to your common questions.)</p>
-  
 
 <!-- Wrapper div for alignment -->
 <div class="flex justify-center items-start gap-20" style="margin: 20px 0;">
-    <!-- Form section -->
+  <!-- Form section -->
+  <form #supportForm="ngForm" (ngSubmit)="onSubmit(supportForm)">
     <div class="max-w-sm">
-        <div class="mb-5">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="framecafted@gmail.com" required />
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="customerSupport.emailAddress" 
+          name="emailAddress" 
+          required 
+          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" 
+          placeholder="framecrafted@gmail.com" 
+        />
+        <div *ngIf="supportForm.submitted && !supportForm.controls['emailAddress']?.valid" class="text-red-500 text-sm">
+          Email is required.
         </div>
-        <div class="mb-5">
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-            <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+      </div>
+      <div class="mb-5">
+        <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Phone Number</label>
+        <input 
+          type="text" 
+          id="phoneNumber" 
+          [(ngModel)]="customerSupport.phoneNumber" 
+          name="phoneNumber" 
+          required 
+          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" 
+        />
+        <div *ngIf="supportForm.submitted && !supportForm.controls['phoneNumber']?.valid" class="text-red-500 text-sm">
+          Phone number is required.
         </div>
-        <div class="mb-5 flex items-center gap-2">
-            <div class="w-full">
-                <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subject</label>
-                <input type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
-            </div>
-           </div>
-    </div>
-
-    <!-- Textarea section -->
-    <div class="max-w-lg">
-        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
-        <textarea id="message" rows="7" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..." style="width: 400px;"></textarea>
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6" style="text-align: center; background-color: #D8A7B1;color:  #9569B2;font-weight: bold;font-size: medium;">Send</button>
-        
+      </div>
+      <div class="mb-5">
+        <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subject</label>
+        <input 
+          type="text" 
+          id="subject" 
+          [(ngModel)]="customerSupport.subject" 
+          name="subject" 
+          required 
+          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" 
+        />
+        <div *ngIf="supportForm.submitted && !supportForm.controls['subject']?.valid" class="text-red-500 text-sm">
+          Subject is required.
+        </div>
+      </div>
     </div>
     
+    <!-- Textarea section -->
+    <div class="max-w-lg">
+      <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+      <textarea 
+        id="message" 
+        [(ngModel)]="customerSupport.message" 
+        name="message" 
+        rows="7" 
+        required 
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+        placeholder="Your message..." 
+        style="width: 400px;"
+      ></textarea>
+      <div *ngIf="supportForm.submitted && !supportForm.controls['message']?.valid" class="text-red-500 text-sm">
+        Message is required.
+      </div>
+      <button 
+        type="submit" 
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6" 
+        style="text-align: center; background-color: #D8A7B1;color: #9569B2;font-weight: bold;font-size: medium;">
+        Send
+      </button>
+    </div>
+  </form>
 </div>
 
 <app-footer></app-footer>

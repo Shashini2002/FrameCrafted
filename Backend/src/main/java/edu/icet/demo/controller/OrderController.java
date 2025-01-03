@@ -51,6 +51,11 @@ public class OrderController {
             Map<String, Object> response = new HashMap<>();
             response.put("itemCode", entity.getItemCode());
             response.put("price", entity.getPrice());
+            response.put("emailAddress", entity.getEmailAddress());
+            response.put("phoneNumber", entity.getPhoneNumber());
+            response.put("address", entity.getAddress());
+            response.put("photoUrl", entity.getPhotoUrl());
+            response.put("comment", entity.getComment());
 
             // Map the status code to a readable status message
             String statusMessage = switch (entity.getOrderState()) {
@@ -90,4 +95,42 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+    @PutMapping("/update-order/{id}")
+    public ResponseEntity<Map<String, String>> updateOrder(
+            @PathVariable Integer id,
+            @RequestBody Map<String, Object> updates) {
+        Optional<OrderEntity> optionalOrder = repository.findById(id);
+
+        if (optionalOrder.isPresent()) {
+            OrderEntity order = optionalOrder.get();
+
+            if (updates.containsKey("email")) {
+                order.setEmailAddress((String) updates.get("email"));
+            }
+            if (updates.containsKey("phoneNumber")) {
+                order.setPhoneNumber((String) updates.get("phoneNumber"));
+            }
+            if (updates.containsKey("address")) {
+                order.setAddress((String) updates.get("address"));
+            }
+            if (updates.containsKey("photoUrl")) {
+                order.setPhotoUrl((String) updates.get("photoUrl"));
+            }
+            if (updates.containsKey("comments")) {
+                order.setComment((String) updates.get("comments"));
+            }
+
+            repository.save(order);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Order updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Order not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+
+
 }
